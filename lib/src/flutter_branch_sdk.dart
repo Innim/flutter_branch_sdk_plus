@@ -38,6 +38,11 @@ class FlutterBranchSdk {
     return FlutterBranchSdkPlatform.instance.initSession();
   }
 
+  /// Initialize Branch Sdk.
+  static Future<void> initSdk() async {
+    FlutterBranchSdkPlatform.instance.initSdk();
+  }
+
   ///Use the SDK integration validator to check that you've added the Branch SDK and
   ///handle deep links correctly when you first integrate Branch into your app.
   static void validateSDKIntegration() {

@@ -68,6 +68,12 @@ class FlutterBranchSdkMethodChannel implements FlutterBranchSdkPlatform {
     return _initSessionStream!;
   }
 
+  /// init Branch Sdk.
+  @override
+  Future<void> initSdk() async {
+    await messageChannel.invokeMethod('initSdk');
+  }
+
   ///Use the SDK integration validator to check that you've added the Branch SDK and
   ///handle deep links correctly when you first integrate Branch into your app.
   @override

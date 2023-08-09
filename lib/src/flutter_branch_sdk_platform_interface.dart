@@ -66,6 +66,11 @@ abstract class FlutterBranchSdkPlatform extends PlatformInterface {
     throw UnimplementedError('initSession has not been implemented');
   }
 
+  /// Initialize Branch Sdk.
+  Future<void> initSdk() async {
+    throw UnimplementedError('initSdk has not been implemented');
+  }
+
   ///Use the SDK integration validator to check that you've added the Branch SDK and
   ///handle deep links correctly when you first integrate Branch into your app.
   void validateSDKIntegration() {

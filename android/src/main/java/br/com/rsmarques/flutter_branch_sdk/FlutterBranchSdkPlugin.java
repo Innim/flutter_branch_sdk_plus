@@ -56,6 +56,8 @@ public class FlutterBranchSdkPlugin implements FlutterPlugin, MethodCallHandler,
 
   private final FlutterBranchSdkHelper branchSdkHelper = new FlutterBranchSdkHelper();
 
+
+
   /**
    * ---------------------------------------------------------------------------------------------
    * Plugin registry
@@ -83,18 +85,12 @@ public class FlutterBranchSdkPlugin implements FlutterPlugin, MethodCallHandler,
 
     methodChannel.setMethodCallHandler(this);
     eventChannel.setStreamHandler(this);
-
-    FlutterBranchSdkInit.init(context);
   }
 
   private void setActivity(Activity activity) {
     LogUtils.debug(DEBUG_NAME, "setActivity call");
     this.activity = activity;
     activity.getApplication().registerActivityLifecycleCallbacks(this);
-
-    if (this.activity != null && FlutterFragmentActivity.class.isAssignableFrom(activity.getClass())) {
-      Branch.sessionBuilder(activity).withCallback(branchReferralInitListener).withData(activity.getIntent().getData()).init();
-    }
   }
 
   private void teardownChannels() {
@@ -176,7 +172,7 @@ public class FlutterBranchSdkPlugin implements FlutterPlugin, MethodCallHandler,
   @Override
   public void onActivityStarted(Activity activity) {
     LogUtils.debug(DEBUG_NAME, "onActivityStarted call");
-    Branch.sessionBuilder(activity).withCallback(branchReferralInitListener).withData(activity.getIntent().getData()).init();
+    Branch.sessionBuilder(this.activity).withCallback(branchReferralInitListener).withData(this.activity.getIntent().getData()).init();
   }
 
   @Override
@@ -224,6 +220,7 @@ public class FlutterBranchSdkPlugin implements FlutterPlugin, MethodCallHandler,
     }
     this.activity.setIntent(newIntent);
     Branch.sessionBuilder(this.activity).withCallback(branchReferralInitListener).reInit();
+
     return true;
   }
 
@@ -318,7 +315,10 @@ public class FlutterBranchSdkPlugin implements FlutterPlugin, MethodCallHandler,
       case "addSnapPartnerParameter" :
         addSnapPartnerParameter(call);
         break;
-
+      case "initSdk" :
+        FlutterBranchSdkInit.init(this.context);
+        Branch.sessionBuilder(this.activity).withCallback(branchReferralInitListener).withData(this.activity.getIntent().getData()).init();
+        break;
       default:
         result.notImplemented();
         break;
