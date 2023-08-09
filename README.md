@@ -1,5 +1,7 @@
 # Branch SDK Plugin
 
+Fork by Innim.
+
 [![Branch](https://github.com/RodrigoSMarques/flutter_branch_sdk/blob/master/assets/branch.png?raw=true)](https://branch.io)
 
 This is a Flutter plugin that implemented [Branch SDK](https://branch.io).
