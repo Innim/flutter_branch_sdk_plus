@@ -85,6 +85,7 @@ public class FlutterBranchSdkPlugin implements FlutterPlugin, MethodCallHandler,
 
     methodChannel.setMethodCallHandler(this);
     eventChannel.setStreamHandler(this);
+    FlutterBranchSdkInit.init(this.context);
   }
 
   private void setActivity(Activity activity) {
@@ -316,7 +317,7 @@ public class FlutterBranchSdkPlugin implements FlutterPlugin, MethodCallHandler,
         addSnapPartnerParameter(call);
         break;
       case "initSdk" :
-        FlutterBranchSdkInit.init(this.context);
+        Branch.getAutoInstance(context);
         Branch.sessionBuilder(this.activity).withCallback(branchReferralInitListener).withData(this.activity.getIntent().getData()).init();
         break;
       default:

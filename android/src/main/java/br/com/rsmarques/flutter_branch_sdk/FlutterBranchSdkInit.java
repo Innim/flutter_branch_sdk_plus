@@ -27,6 +27,5 @@ public class FlutterBranchSdkInit {
         // Branch object initialization
         Branch.registerPlugin(PLUGIN_NAME, PLUGIN_VERSION);
         Branch.expectDelayedSessionInitialization(true);
-        Branch.getAutoInstance(context);
     }
 }
