@@ -1,6 +1,6 @@
-# Branch SDK Plugin
+# Fork [flutter_branch_sdk](https://github.com/RodrigoSMarques/flutter_branch_sdk) by Innim.
 
-Fork by Innim.
+## Branch SDK Plugin
 
 [![Branch](https://github.com/RodrigoSMarques/flutter_branch_sdk/blob/master/assets/branch.png?raw=true)](https://branch.io)
 
